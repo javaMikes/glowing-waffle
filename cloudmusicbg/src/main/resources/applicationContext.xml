@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 不扫controller层 -->  
+    <context:component-scan base-package="com.cloudmusic">  
+    </context:component-scan>  
+      
+    <!-- 引入xx.properties,引入多个用逗号隔开 -->  
+     <context:property-placeholder location="classpath:db.properties" ignore-unresolvable="true"/>
+      
+    <!-- 配置ComPooledDataSource数据源 -->  
+    <bean id="comboPooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">  
+        <property name="jdbcUrl" value="${jdbcUrl}"></property>  
+        <property name="driverClass" value="${driverClass}"></property>  
+        <property name="user" value="${user}"></property>  
+        <property name="password" value="${password}"></property>  
+    </bean>  
+      
+    <!-- Spring Mybatis整合:配置SqlSessionFactoryBean -->  
+    <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <!-- 配置mybatis-config.xml -->  
+        <property name="configLocation" value="classpath:mybatis-config.xml"></property>  
+        <!-- 引入c3p0数据源 -->  
+        <property name="dataSource" ref="comboPooledDataSource"></property>  
+        <!-- 配置mapper映射文件 -->  
+        <property name="mapperLocations" value="classpath:mapper/*.xml"></property>  
+    </bean>  
+    
+    <!-- 扫描整个com.dgut.dao包接口路径，可以获取所有的Mapper接口 -->  
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="com.cloudmusic.mapper"></property>  
+    </bean>  
+    
+    <!-- 任务扫描注解 -->
+    <task:executor id="executor" pool-size="5" />  
+	<task:scheduler id="scheduler" pool-size="10" />  
+	<task:annotation-driven executor="executor" scheduler="scheduler" />
+    
+    <!-- 引入数据库配置文件 -->
+	<bean id="propertyConfigurer"    class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="locations">
+	        <list>
+	            <value>classpath:db.properties</value>
+	            <value>classpath:redis.properties</value>
+	        </list>
+	    </property>
+	</bean>
+	<!-- redis数据源 -->
+	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">  
+	    <property name="maxIdle" value="${redis.maxIdle}" />  
+	    <property name="maxTotal" value="${redis.maxActive}" />  
+	    <property name="maxWaitMillis" value="${redis.maxWait}" />  
+	    <property name="testOnBorrow" value="${redis.testOnBorrow}" />  
+	</bean>
+	<!-- Spring-redis连接池管理工厂 -->
+	<bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"  
+	    p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}"  p:pool-config-ref="poolConfig"/>  
+	<!-- 使用中间类解决RedisCache.jedisConnectionFactory的静态注入，从而使MyBatis实现第三方缓存 -->
+	<bean id="redisCacheTransfer" class="com.cloudmusic.redis.RedisCacheTransfer">
+	    <property name="jedisConnectionFactory" ref="jedisConnectionFactory"/>
+	</bean>
+</beans>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudmusic.mapper.PlaylistMapper">
+  <!-- <cache type="com.cloudmusic.redis.RedisCache"/> -->
+  <resultMap id="BaseResultMap" type="com.cloudmusic.bean.Playlist">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="list_name" jdbcType="VARCHAR" property="listName" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="profile" jdbcType="VARCHAR" property="profile" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="play_times" jdbcType="BIGINT" property="playTimes" />
+    <result column="collection" jdbcType="BIGINT" property="collection" />
+    <result column="img_path" jdbcType="VARCHAR" property="imgPath" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, list_name, user_id, profile, create_time, play_times, collection, img_path
+  </sql>
+  <select id="selectByExample" parameterType="com.cloudmusic.bean.PlaylistExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from playlist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from playlist
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from playlist
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cloudmusic.bean.PlaylistExample">
+    delete from playlist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cloudmusic.bean.Playlist" useGeneratedKeys="true" keyProperty="id">
+    insert into playlist (id, list_name, user_id, 
+      profile, create_time, play_times, 
+      collection, img_path)
+    values (#{id,jdbcType=BIGINT}, #{listName,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+      #{profile,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, #{playTimes,jdbcType=BIGINT}, 
+      #{collection,jdbcType=BIGINT}, #{imgPath,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloudmusic.bean.Playlist" useGeneratedKeys="true" keyProperty="id">
+    insert into playlist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="listName != null">
+        list_name,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="profile != null">
+        profile,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="playTimes != null">
+        play_times,
+      </if>
+      <if test="collection != null">
+        collection,
+      </if>
+      <if test="imgPath != null">
+        img_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="listName != null">
+        #{listName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="profile != null">
+        #{profile,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="playTimes != null">
+        #{playTimes,jdbcType=BIGINT},
+      </if>
+      <if test="collection != null">
+        #{collection,jdbcType=BIGINT},
+      </if>
+      <if test="imgPath != null">
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cloudmusic.bean.PlaylistExample" resultType="java.lang.Integer">
+    select count(*) from playlist
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update playlist
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.listName != null">
+        list_name = #{record.listName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.profile != null">
+        profile = #{record.profile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=DATE},
+      </if>
+      <if test="record.playTimes != null">
+        play_times = #{record.playTimes,jdbcType=BIGINT},
+      </if>
+      <if test="record.collection != null">
+        collection = #{record.collection,jdbcType=BIGINT},
+      </if>
+      <if test="record.imgPath != null">
+        img_path = #{record.imgPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update playlist
+    set id = #{record.id,jdbcType=BIGINT},
+      list_name = #{record.listName,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      profile = #{record.profile,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=DATE},
+      play_times = #{record.playTimes,jdbcType=BIGINT},
+      collection = #{record.collection,jdbcType=BIGINT},
+      img_path = #{record.imgPath,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloudmusic.bean.Playlist">
+    update playlist
+    <set>
+      <if test="listName != null">
+        list_name = #{listName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="profile != null">
+        profile = #{profile,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="playTimes != null">
+        play_times = #{playTimes,jdbcType=BIGINT},
+      </if>
+      <if test="collection != null">
+        collection = #{collection,jdbcType=BIGINT},
+      </if>
+      <if test="imgPath != null">
+        img_path = #{imgPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloudmusic.bean.Playlist">
+    update playlist
+    set list_name = #{listName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      profile = #{profile,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      play_times = #{playTimes,jdbcType=BIGINT},
+      collection = #{collection,jdbcType=BIGINT},
+      img_path = #{imgPath,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

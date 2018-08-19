@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloudmusic.mapper.SongMapper">
+  <resultMap id="BaseResultMap" type="com.cloudmusic.bean.Song">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="song_name" jdbcType="VARCHAR" property="songName" />
+    <result column="singer" jdbcType="VARCHAR" property="singer" />
+    <result column="lyrics" jdbcType="VARCHAR" property="lyrics" />
+    <result column="composition" jdbcType="VARCHAR" property="composition" />
+    <result column="music_time" jdbcType="VARCHAR" property="musicTime" />
+    <result column="collection" jdbcType="BIGINT" property="collection" />
+    <result column="play_times" jdbcType="BIGINT" property="playTimes" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="integral" jdbcType="BIGINT" property="integral" />
+    <result column="img_path" jdbcType="VARCHAR" property="imgPath" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, song_name, singer, lyrics, composition, music_time, collection, play_times, path, 
+    introduction, integral, img_path
+  </sql>
+  <select id="selectByExample" parameterType="com.cloudmusic.bean.SongExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from song
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from song
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from song
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cloudmusic.bean.SongExample">
+    delete from song
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cloudmusic.bean.Song" useGeneratedKeys="true" keyProperty="id">
+    insert into song (id, song_name, singer, 
+      lyrics, composition, music_time, 
+      collection, play_times, path, 
+      introduction, integral, img_path
+      )
+    values (#{id,jdbcType=BIGINT}, #{songName,jdbcType=VARCHAR}, #{singer,jdbcType=VARCHAR}, 
+      #{lyrics,jdbcType=VARCHAR}, #{composition,jdbcType=VARCHAR}, #{musicTime,jdbcType=VARCHAR}, 
+      #{collection,jdbcType=BIGINT}, #{playTimes,jdbcType=BIGINT}, #{path,jdbcType=VARCHAR}, 
+      #{introduction,jdbcType=VARCHAR}, #{integral,jdbcType=BIGINT}, #{imgPath,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloudmusic.bean.Song" useGeneratedKeys="true" keyProperty="id">
+    insert into song
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="songName != null">
+        song_name,
+      </if>
+      <if test="singer != null">
+        singer,
+      </if>
+      <if test="lyrics != null">
+        lyrics,
+      </if>
+      <if test="composition != null">
+        composition,
+      </if>
+      <if test="musicTime != null">
+        music_time,
+      </if>
+      <if test="collection != null">
+        collection,
+      </if>
+      <if test="playTimes != null">
+        play_times,
+      </if>
+      <if test="path != null">
+        path,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="integral != null">
+        integral,
+      </if>
+      <if test="imgPath != null">
+        img_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="songName != null">
+        #{songName,jdbcType=VARCHAR},
+      </if>
+      <if test="singer != null">
+        #{singer,jdbcType=VARCHAR},
+      </if>
+      <if test="lyrics != null">
+        #{lyrics,jdbcType=VARCHAR},
+      </if>
+      <if test="composition != null">
+        #{composition,jdbcType=VARCHAR},
+      </if>
+      <if test="musicTime != null">
+        #{musicTime,jdbcType=VARCHAR},
+      </if>
+      <if test="collection != null">
+        #{collection,jdbcType=BIGINT},
+      </if>
+      <if test="playTimes != null">
+        #{playTimes,jdbcType=BIGINT},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=BIGINT},
+      </if>
+      <if test="imgPath != null">
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cloudmusic.bean.SongExample" resultType="java.lang.Integer">
+    select count(*) from song
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update song
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.songName != null">
+        song_name = #{record.songName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.singer != null">
+        singer = #{record.singer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lyrics != null">
+        lyrics = #{record.lyrics,jdbcType=VARCHAR},
+      </if>
+      <if test="record.composition != null">
+        composition = #{record.composition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.musicTime != null">
+        music_time = #{record.musicTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.collection != null">
+        collection = #{record.collection,jdbcType=BIGINT},
+      </if>
+      <if test="record.playTimes != null">
+        play_times = #{record.playTimes,jdbcType=BIGINT},
+      </if>
+      <if test="record.path != null">
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduction != null">
+        introduction = #{record.introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.integral != null">
+        integral = #{record.integral,jdbcType=BIGINT},
+      </if>
+      <if test="record.imgPath != null">
+        img_path = #{record.imgPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update song
+    set id = #{record.id,jdbcType=BIGINT},
+      song_name = #{record.songName,jdbcType=VARCHAR},
+      singer = #{record.singer,jdbcType=VARCHAR},
+      lyrics = #{record.lyrics,jdbcType=VARCHAR},
+      composition = #{record.composition,jdbcType=VARCHAR},
+      music_time = #{record.musicTime,jdbcType=VARCHAR},
+      collection = #{record.collection,jdbcType=BIGINT},
+      play_times = #{record.playTimes,jdbcType=BIGINT},
+      path = #{record.path,jdbcType=VARCHAR},
+      introduction = #{record.introduction,jdbcType=VARCHAR},
+      integral = #{record.integral,jdbcType=BIGINT},
+      img_path = #{record.imgPath,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloudmusic.bean.Song">
+    update song
+    <set>
+      <if test="songName != null">
+        song_name = #{songName,jdbcType=VARCHAR},
+      </if>
+      <if test="singer != null">
+        singer = #{singer,jdbcType=VARCHAR},
+      </if>
+      <if test="lyrics != null">
+        lyrics = #{lyrics,jdbcType=VARCHAR},
+      </if>
+      <if test="composition != null">
+        composition = #{composition,jdbcType=VARCHAR},
+      </if>
+      <if test="musicTime != null">
+        music_time = #{musicTime,jdbcType=VARCHAR},
+      </if>
+      <if test="collection != null">
+        collection = #{collection,jdbcType=BIGINT},
+      </if>
+      <if test="playTimes != null">
+        play_times = #{playTimes,jdbcType=BIGINT},
+      </if>
+      <if test="path != null">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null">
+        integral = #{integral,jdbcType=BIGINT},
+      </if>
+      <if test="imgPath != null">
+        img_path = #{imgPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloudmusic.bean.Song">
+    update song
+    set song_name = #{songName,jdbcType=VARCHAR},
+      singer = #{singer,jdbcType=VARCHAR},
+      lyrics = #{lyrics,jdbcType=VARCHAR},
+      composition = #{composition,jdbcType=VARCHAR},
+      music_time = #{musicTime,jdbcType=VARCHAR},
+      collection = #{collection,jdbcType=BIGINT},
+      play_times = #{playTimes,jdbcType=BIGINT},
+      path = #{path,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=BIGINT},
+      img_path = #{imgPath,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
