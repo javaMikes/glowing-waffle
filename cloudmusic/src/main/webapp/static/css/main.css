@@ -1,0 +1,140 @@
+body {
+	font-family: "Microsoft Yahei";
+	background-color: #f5f5f5;
+}
+
+textarea {
+	resize: none;
+}
+
+hr {
+	margin: 10px 0px;
+}
+
+.bigSlider,
+.rs_mainslider,
+.rs_mainslider_items,
+.rs_mainslider_items li  {
+	margin-bottom: 0px;	
+	width: 100% !important;
+	height: 400px !important;
+	text-align: center;
+}
+
+.bigSlider img {
+	width: 100% !important;
+	height: 100% !important;
+} 
+
+#song_singer_container {
+	padding: 30px 35px;
+	background-color: white;
+}
+
+.color_dot {
+	font-size : 3em;
+}
+
+#song_singer_container .title_box {
+	position : relative;
+	margin-bottom : 20px;
+	padding : 5px 5px;
+	border-bottom : 3px solid #e33939;
+}
+
+#song_singer_container .title_box .title {	
+	display : inline-block;
+	font-size : 2em;
+}
+
+#song_singer_container .title_box .more {
+	position : absolute;
+	right : 5px;
+}
+
+#song_singer_container .title_box ul{
+	display : inline-block;
+	margin : 0px 20px;
+}
+
+#song_singer_container .title_box li {
+	float : left;
+	margin-left : 15px;
+	list-style : none;
+}
+
+#song_singer_container .hot_singer {
+	position : relative;	
+}
+
+
+#song_singer_container .hot_singer .title {
+	font-weight : bold;
+}
+
+#song_singer_container .hot_singer .readMore{
+	position : absolute;
+	top : 5px;
+	right : 5px;
+}
+
+#billboard_table {
+	width: 100%;
+	background-color: #f5f5f5;
+}
+
+#billboard_table tbody tr {
+	width: 100%;
+	height: 30px;
+}
+
+#billboard_table tbody tr:nth-child(odd) {
+	background-color: #ececec;
+}
+
+#billboard_table tbody td {
+	padding: 0px 20px; 
+	width: 33%;
+}
+
+#billboard_table .billboard_num{
+	display: inline-block;
+	margin-right: 20px;
+	width: 10px;
+	font-size: 1.3em;
+	color: grey;
+	text-aligh: center;
+}
+
+#billboard_table tbody tr:nth-child(1) .billboard_num,
+#billboard_table tbody tr:nth-child(2) .billboard_num,
+#billboard_table tbody tr:nth-child(3) .billboard_num {
+	color: #e33939;
+}
+
+#singer_list_container ul li img{
+	width: 55px;
+	height: 55px;
+}
+
+#singer_list_container p{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#hot_list img,
+#favourite_list img {
+	width: 140px;
+	height: 140px;
+}
+
+
+
+
+
+
+
+
+
+

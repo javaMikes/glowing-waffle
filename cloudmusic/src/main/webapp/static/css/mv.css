@@ -1,0 +1,23 @@
+.flowplayer {
+	width: 80%; 
+}
+
+.flowplayer .fp-progress {
+	background-color:#f34343;
+}
+
+.flowplayer .fp-volumelevel {
+	background-color:#f34343;
+}
+
+.fp-brand {
+	display: none !important;
+}
+
+.fp-embed {
+	display: none !important;
+}
+
+.flowplayer a {
+	background-image: url() !important; 
+}

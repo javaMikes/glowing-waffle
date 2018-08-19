@@ -1,0 +1,42 @@
+.mp {
+	z-index: 20;
+}
+
+.mp-list-table {
+	display: block;
+	height: 340px;
+}
+
+.mp .mp-list-title li{
+	line-height: 40px;
+}
+
+.mp-list tr td:nth-child(1) {
+	position: relative;
+	width: 35%;
+}
+
+.mp-list tr td:nth-child(2) {
+	position: relative;
+	width: 50%;
+}
+
+.mp-list tr td:nth-child(3) {
+	position: relative;
+	width: 15%;
+}
+
+.mp-list [class^="icon-"] {
+	display: none;
+	position: absolute;
+	top: 7px;
+	right: 0px;
+	
+	-webkit-filter: brightness(70%); /* Chrome, Safari, Opera */
+    filter: brightness(70%);
+}
+
+.mp-list [class^="icon-"]:hover {
+	-webkit-filter: brightness(100%); /* Chrome, Safari, Opera */
+    filter: brightness(100%);
+}

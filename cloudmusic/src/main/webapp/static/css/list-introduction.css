@@ -1,0 +1,44 @@
+#list_introduction .list_img {
+	margin-right: 10px;
+	width: 170px;
+	height: 170px;
+}
+
+#list_introduction p {
+	margin: 7px 0px;
+}
+
+#list_introduction .icn {
+	font-size: 1.2em;
+}
+
+#list_introduction .icn_title {
+	margin-left: 10px;
+	line-height: 30px;
+	font-size: 2em;
+	font-weight: 500;
+}
+
+#list_introduction .found_img {
+	width: 30px;
+	height: 30px;
+}
+
+#list_introduction .btn {
+	margin: 0px 10px;
+	border-radius: 5px;
+}
+
+#list_introduction .tag{
+	margin: 0px 5px;
+	padding: 0px 8px;
+	border: 1px solid #cecece;
+	border-radius: 25px;
+	height: 25px;
+	color: #777777;
+	background-color: #f3f3f3;
+}
+
+.userId {
+	display: none;
+}

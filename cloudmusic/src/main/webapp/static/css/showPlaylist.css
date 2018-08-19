@@ -1,0 +1,142 @@
+body {
+	width: 100%;
+	font-family: "Microsoft Yahei";
+	background-color: #f5f5f5;
+}
+
+#list_container {
+	position: relative;
+	padding: 30px 35px;
+	width: 940px;
+	height: 861px;
+	background-color: white;
+}
+
+.no_data {
+	position: absolute;
+	margin: auto;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	width: 260px;
+	height: 100px;
+	color: #c1c1c1;
+	font-size: 5em;
+}
+
+.h_box {
+	position: relative;
+	border-bottom: 3px solid #e33939;
+}
+
+.h_box h2 {
+	display: inline-block;
+}
+
+#select_tag {
+	position: relative;
+	bottom: 5px;
+	margin: 0px 15px;
+	border-radius: 5px;
+}
+
+#tag_box {
+	display: none;
+	z-index: 5;
+	position: absolute;
+	top: 65px;
+	left: 50px;
+	border-radius: 5px;
+	padding-bottom: 15px;
+	width: 600px;
+	height: auto;
+	background-color: white;
+	box-shadow: 0px 5px 10px;
+}
+
+#tag_box h3 {
+	margin: 0px;
+	padding: 10px 40px;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+#tag_box a {
+	border-radius: 5px;
+}
+
+#tag_box dl {
+	margin: 0px;
+	clear: left;
+}
+
+#tag_box dt {
+	float: left;
+	padding-top: 15px;
+	width: 15%;
+	text-align: center;
+}
+
+#tag_box dd {
+	float: left;
+	border-left: 1px solid #e6e6e6;
+	padding-top: 15px;
+	padding-left: 10px;
+	width: 80%;
+	line-height: 23px;
+}
+
+#tag_box dd a{
+	display: inline-block;
+	margin: 0px 15px; 
+}
+
+
+#tag_box dd span{
+	font-size: 0.9em;
+	color: #e6e6e6;
+}
+
+.tag_selected {
+	display: inline-block;
+	padding: 6px 18px;
+	margin: 3px 0;
+	font-size: 1.3rem;
+	color: white;
+	line-height: 18px;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 900;
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: #000000;
+	border: 0;
+}
+
+.playlistBlock img {
+	width: 140px;
+	height: 140px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

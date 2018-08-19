@@ -1,0 +1,246 @@
+body {
+	font-family : 'Microsoft YaHei';
+}
+
+a:hover{
+	text-decoration : none;
+}
+
+.brand::before{
+	background : url("../img/title_brand.png") 0 0 no-repeat;
+	background-size : 252px 51px;
+}
+
+.brand::after{
+	background : transparent;
+}
+
+.navTop ul li:nth-child(1) span {
+	background-color : #ff5959;
+}
+.navTop ul li:nth-child(2) span {
+	background-color : #e33939;
+}
+
+.navTop ul li span {
+	display:block;
+	padding: 5px;
+	height:19px;
+	color: white;
+	font-weight : bold;
+	cursor : pointer;
+	transition: all 0.5s linear;
+}
+
+.navTop ul li span:hover{
+	background-color : black;
+}
+
+/* =========================user nav========================= */
+#user_nav{
+	position : relative;
+	width : auto;
+	color : white;
+	cursor : pointer;
+}
+
+#user_nav_content{
+	width : 100%;
+	height : 29px;
+	line-height : 29px;/* 与height，达到文字垂直居中 */
+	font-size : 1.2em;
+}
+
+#user_nav_content img{
+	height : 29px;
+}
+
+#user_nav_list {
+	z-index : 5;
+	display : none;
+	position : absolute;
+	top : 29px;
+	width : 200px;
+	background-color : #4a4a4a;
+	box-shadow:0px 5px 20px black;
+}
+
+#user_nav_list a{
+	display : block;
+	width : 100%;
+	height : 30px;
+	line-height : 30px;
+	color : white;
+	font-size : 1.1em;
+	text-align : center;
+	list-style : none;
+	transition: all 0.5s linear;
+}
+
+#user_nav_list a:hover{
+	color : #ff5959;
+}
+
+#user_nav_list a{
+	border-top : 1px solid grey;
+}
+
+#user_nav_list a:nth-child(1){
+	border-top : 0px;
+}
+/* =========================end of user nav========================= */
+
+/* =========================login_msg_box========================= */
+#login_msg_box {
+	z-index : 10;
+	display : none;
+	position : absolute;
+	top: 0; 
+	left: 0; 
+	bottom: 0; 
+	right: 0;  
+	margin: auto;  
+	padding : 0;
+	width : 300px;
+	height : 150px;
+	background-color : #f3f3f3;
+	box-shadow:0px 5px 20px black;
+}
+
+#login_confirm {
+	position : relative;
+	bottom : 10px;
+}
+
+.box_close{
+	position : absolute;
+	top : 0;
+	right : 0;
+	border : 0;
+	width : 40px;
+	height : 40px;/* 与.alert-bar高度相同 达到居中 */
+	font-size : 2em;
+	background-color : #ff5959;
+}
+
+.box_head {
+	position : relative;
+	width : 100%;
+	height : 40px;
+	background-color : #5a5a5a;
+}
+
+.box_body{
+	margin-top : 30px;
+	width : 100%;
+	height : 50px;
+	color : #5a5a5a;
+	font-size : 1.2em;
+	text-align : center;
+}
+
+.box_foot{
+	width : 100%;
+	text-align : center;
+}
+/* =========================end of login_msg_box========================= */
+
+/* =========================login_box========================= */
+#login_box {
+	z-index : 5;
+	display : none;
+	position : absolute;
+	top: 0; 
+	left: 0; 
+	bottom: 0; 
+	right: 0;  
+	margin: auto;  
+	padding : 0;
+	width : 600px;
+	height : 280px;
+	background-color : #f3f3f3;
+	box-shadow:0px 5px 20px black;
+}
+
+.login_close{
+	position : absolute;
+	top : 0;
+	right : 0;
+	border : 0;
+	width : 40px;
+	height : 40px;/* 与.box-bar高度相同 达到居中 */
+	font-size : 2em;
+	background-color : #ff5959;
+}
+
+.login_box_img{
+	width : 100%;
+}
+
+.login_head {
+	position : relative;
+	width : 100%;
+	height : 40px;
+	background-color : black;
+}
+
+.login_body{
+	position : relative;
+	margin-top : 30px;
+	width : 100%;
+	color : #5a5a5a;
+	font-size : 1.2em;
+	text-align : center;
+}
+
+.login_foot{
+	width : 100%;
+	text-align : center;
+}
+
+#login_form {
+	margin: 0px;
+}
+/* =========================end of login_box========================= */
+
+/* =========================search CSS =========================*/
+
+.dySearchDiv{
+	width:220px;
+	height:auto;
+	position:absolute;
+	background: #FFFFFF;
+	z-index: 99999;
+	box-shadow:0px 0px 15px 0px #F5F5F5;
+}
+
+.dyBorderBottom{
+	border-width:1px;
+	border-bottom: 1px; 
+	border-top: 0; 
+	border-left: 0; 
+	border-right: 0; 
+	border-color:#E5D1F7;
+	border-style:solid;
+}
+.dyInfoDiv{
+	height:auto;
+	position:relative;
+	left:31%;
+	top:0;
+	width:69%;
+	text-align:center;
+}
+
+.dyBorderLeft{
+	border-width:1px;
+	border-bottom: 0; 
+	border-top: 0; 
+	border-left: 1px; 
+	border-right: 0; 
+	border-color:#E5D1F7;
+	border-style:solid;
+}
+/* ========================= end of Search ======================*/
+
+

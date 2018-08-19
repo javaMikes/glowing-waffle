@@ -1,0 +1,47 @@
+body {
+	font-family : 'Microsoft YaHei';
+}
+
+#user_setting_nav li{
+	font-size : 1.1em;
+}
+
+.setting_content{
+	position: relative;
+	display : none;¡¢
+	width: 620;
+	height: 450px;
+}
+
+.setting_content.active{
+	display : block;
+}
+
+#person_signature_update {
+	resize : none;
+}
+
+#avatarInput {
+	display: none;
+}
+
+.user_pic {
+	position: absolute;  
+	margin: auto;  
+	top: 0; 
+	left: 0; 
+	bottom: 0; 
+	right: 0;  
+	width: 186px;
+	height: 186px;
+}
+
+.fa-undo,
+.fa-repeat {
+	float: left;
+	margin-right: 10px;
+}
+
+.avatar-save {
+	width: 100%;
+}
